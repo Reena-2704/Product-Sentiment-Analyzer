@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: product-sentiment-analyzer-api
+    env: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DATABASE
+        value: product_sentiment
+      - key: MONGODB_COLLECTION
+        value: reviews
